@@ -1,1 +1,18 @@
 
+services:
+  - type: web
+    name: telegram-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: PORT
+        value: 10000
+    autoDeploy: true
+    disk:
+      name: bot-data
+      mountPath: /opt/render/project/src
+      sizeGB: 1
